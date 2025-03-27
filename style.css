@@ -18,7 +18,7 @@ body {
 
 .game-title {
   margin-bottom: 20px;
-  color: #1E90FF; /* A fun blue tone */
+  color: #1E90FF; /* Fun blue tone */
 }
 
 .canvas-wrapper {
@@ -38,6 +38,34 @@ canvas {
   height: auto;
   border: 1px solid #000;
   border-radius: 10px;
+}
+
+.virtual-keys {
+  margin: 20px auto;
+  display: none; /* Hidden by default */
+}
+
+.arrow-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.arrow-key {
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1E90FF;
+  color: white;
+}
+
+/* Show virtual keys on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .virtual-keys {
+    display: block;
+  }
 }
 
 .footer-text {
