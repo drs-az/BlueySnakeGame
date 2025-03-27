@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.game-container {
+  text-align: center;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.game-title {
+  margin-bottom: 20px;
+  color: #1E90FF; /* A fun blue tone */
+}
+
+.canvas-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 15px;
+  background: linear-gradient(135deg, #89CFF0, #1E90FF); /* Blue gradient */
+  border: 5px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.footer-text {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #1E90FF;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .game-title {
+    font-size: 1.5rem;
+  }
+  .footer-text {
+    font-size: 14px;
+  }
+}
