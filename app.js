@@ -20,7 +20,7 @@ const cols = canvas.width / cellSize;
 let snake = [{ x: Math.floor(cols / 2), y: Math.floor(rows / 2) }];
 let direction = { x: 0, y: 0 };
 let food = spawnFood();
-let speed = 100; // milliseconds per frame
+let speed = 200; // milliseconds per frame
 let gameInterval;
 
 // Load Bluey image for the snake head
