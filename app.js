@@ -20,7 +20,7 @@ const cols = canvas.width / cellSize;
 let snake = [{ x: Math.floor(cols / 2), y: Math.floor(rows / 2) }];
 let direction = { x: 0, y: 0 };
 let food = spawnFood();
-let speed = 400; // milliseconds per frame
+let speed; // will be set based on user selection
 let gameInterval;
 
 // Load Bluey image for the snake head
@@ -47,9 +47,7 @@ function gameLoop() {
 }
 
 function update() {
-  if (direction.x === 0 && direction.y === 0) {
-    return;
-  }
+  if (direction.x === 0 && direction.y === 0) return;
 
   // Calculate new head position based on current direction
   let head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
@@ -84,11 +82,14 @@ function draw() {
   ctx.fillStyle = "#fff";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+  // Draw food
   ctx.fillStyle = "red";
   ctx.fillRect(food.x * cellSize, food.y * cellSize, cellSize, cellSize);
 
+  // Draw snake
   for (let i = 0; i < snake.length; i++) {
     if (i === 0) {
+      // Draw the head as Bluey image if loaded, else fallback
       if (blueyImage.complete) {
         ctx.drawImage(blueyImage, snake[i].x * cellSize, snake[i].y * cellSize, cellSize, cellSize);
       } else {
@@ -105,13 +106,14 @@ function draw() {
 function gameOver() {
   clearInterval(gameInterval);
   alert("Game Over!");
+  // Restart the game
   snake = [{ x: Math.floor(cols / 2), y: Math.floor(rows / 2) }];
   direction = { x: 0, y: 0 };
   food = spawnFood();
   gameInterval = setInterval(gameLoop, speed);
 }
 
-// Listen for keyboard input to change the snake's direction
+// Keyboard input for directional control
 document.addEventListener("keydown", e => {
   if ((e.key === "ArrowUp" || e.key === "w") && direction.y !== 1) {
     direction = { x: 0, y: -1 };
@@ -145,5 +147,17 @@ if (btnUp && btnDown && btnLeft && btnRight) {
   });
 }
 
-// Start the game loop
-gameInterval = setInterval(gameLoop, speed);
+// --- Speed Selection Modal Logic ---
+const speedModal = document.getElementById("speedModal");
+const speedButtons = document.querySelectorAll(".speed-option");
+
+// Wait for a speed selection before starting the game
+speedButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    speed = parseInt(btn.dataset.speed);
+    // Hide the modal
+    speedModal.style.display = "none";
+    // Start the game loop at the selected speed
+    gameInterval = setInterval(gameLoop, speed);
+  });
+});
