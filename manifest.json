@@ -1,6 +1,6 @@
 {
   "name": "Bluey Snake",
-  "short_name": "BlueySnake",
+  "short_name": "Bluey Snake",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
